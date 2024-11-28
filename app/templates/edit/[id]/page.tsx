@@ -81,13 +81,11 @@ const Page: FC<pageProps> = ({ className }) => {
 	//   }, [inviteData]);
 
 	return (
-		<div className={cn("min-w-full block", className)}>
+		<div className={cn("min-w-full block bg-[url(https://media.istockphoto.com/id/1284877148/vector/blueprint-background-blue-paper-print-with-white-grid-pattern-vector-illustration-drawing.jpg?s=612x612&w=0&k=20&c=f4_hvNcr7Y9bwBNGUZP4k55KRgb8OhOJg0JTU4gaxx4=)] bg-fixed bg-cover backdrop:grayscale", className)}>
 			<TemplateEditProvider Template={InviteTemplate }/>
 				
 			<div className="fixed top-7 right-7">
-				<Button className=" flex gap-1">
-					Share <Share size={16} />
-				</Button>
+				
 				<InviteShareModal inviteId={inviteId}/>
 			</div>
 		</div>

@@ -14,6 +14,7 @@ export const usePublishInvite = (): PublishInviteReturnType => {
       const res = await fetch(process.env.NEXT_PUBLIC_SERVER_URL+`/edit/invites/${inviteId}`);
       if (!res.ok) {
         throw new Error('Error fetching invite data.');
+        
       }
       const { email, templateId, inviteDetails, inviteName } = await res.json();
 
@@ -36,7 +37,8 @@ export const usePublishInvite = (): PublishInviteReturnType => {
       });
 
       if (!publish.ok) {
-        throw new Error('Failed to publish invite');
+        
+        throw new Error(error);
       }
 
       return await publish.json();

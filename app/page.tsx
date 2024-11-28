@@ -44,6 +44,7 @@ export default function Home() {
 	const { data: session } = useSession();
 	
 	const setSesion = useSessionStore((state) => state.setSession);
+	// @ts-ignore
 	session?.user && setSesion(session.expires, session.user);
 	// session?.user && console.log(session);
 	const plugin = useRef(Autoplay({ delay: 1000, stopOnInteraction: true }));

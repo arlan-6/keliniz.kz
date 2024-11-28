@@ -67,7 +67,7 @@ export const UserEditedTemplates: FC<userEditedTemplatesProps> = ({
 							return (
 								<div
 									key={template.inviteId}
-									className="p-4 min-w-80 shadow-sm rounded-md hover:shadow-lg transition-shadow"
+									className="p-3 min-w-80 shadow-sm rounded-lg hover:shadow-lg transition-shadow flex justify-between"
 								>
 									<Link href={`/templates/edit/${template.inviteId}`}>
 										<UserEditedTemplateCard className="" template={template} />
