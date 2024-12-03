@@ -77,7 +77,7 @@ export const InviteShareModal: FC<InviteShareModalProps> = ({ className, inviteI
             <DialogTitle>Are you sure?</DialogTitle>
             <DialogDescription>
               You can only share this invite once. Are you sure you want to proceed?
-              Don't forget to save your changes before sharing.
+              Dont forget to save your changes before sharing.
             </DialogDescription>
           </DialogHeader>
           <DialogFooter>
