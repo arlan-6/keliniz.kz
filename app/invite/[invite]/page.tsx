@@ -12,7 +12,7 @@ interface PageProps {
 
 const Page: FC<PageProps> = ({ className }) => {
   const params = useParams();
-  const inviteId = params.invite; // Assumes the route parameter is named 'invite'
+  const inviteId = params.invite; 
 
   const { data, pending, error } = useGetPublishedInvite(inviteId as string);
 
@@ -39,22 +39,18 @@ const Page: FC<PageProps> = ({ className }) => {
   interface TemplateProps {
     className?: string;
     inviteDetails: InviteDetails;
+    inviteId?: string;
     }
   // Dynamically import the template component based on the templateId
   const Template = dynamic<TemplateProps>(() => import(`@/components/template/${data.templateId}`), {
     loading: () => <div>Loading template...</div>,
     ssr: false,
   });
-  // console.log(data);
   
   return (
-    <div className="">
-      {/* <Head>
-        <title>{data.inviteName}</title>
-        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-      </Head> */}
+    <div className="">      
     <div className={cn('w-full ', className)}>
-      <Template inviteDetails= {data.inviteDetails} />
+      <Template inviteDetails= {data.inviteDetails}/>
     </div>
     </div>
   );

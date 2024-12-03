@@ -7,6 +7,7 @@ type PublishedInvite = {
   templateId: string;
   inviteDetails: any;
   inviteName: string;
+  rsvp: any[];
   // Add other fields as necessary
 };
 
@@ -27,4 +28,16 @@ export const useGetPublishedInvite = (inviteId: string) => {
     pending: isLoading,
     error,
   };
+};
+
+export const getPublishedInviteServer = async (inviteId: string): Promise<PublishedInvite> => {
+  const url = `${process.env.NEXT_PUBLIC_SERVER_URL}/invites/published/${inviteId}`;
+  const response = await fetch(url);
+
+  if (!response.ok) {
+    throw new Error('Failed to fetch published invite');
+  }
+
+  const data = await response.json();
+  return data;
 };

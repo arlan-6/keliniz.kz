@@ -22,6 +22,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { Button } from "@/components/ui/button";
 import { useSession } from "next-auth/react";
 import { useSessionStore } from "./store/store";
+import { HomePageCarusel } from "@/components/shared/homePageCarusel";
 
 const elMesiri = El_Messiri({
 	weight: "400",
@@ -39,10 +40,62 @@ const notoSansKR = Noto_Sans_KR({
 	weight: "400",
 	subsets: ["cyrillic"],
 });
-
+const CarouselItems =
+[
+	{
+		src: "/images/fredomtodesign.jpg",
+		title: "Freedom to Design",
+		description:
+			"Get access to thousands of customizable designs at your fingertips.",
+		bgClass:
+			"bg-gradient-to-r from-purple-400 via-pink-500 to-red-500",
+	},
+	{
+		src: "/images/sharing.jpg",
+		title: "Sharing made simple",
+		description:
+			"Effortlessly share your e-invites via email, social media, or any platform of choosing.",
+		bgClass: "bg-slate-500",
+	},
+	{
+		src: "/images/fredomtodesign.jpg",
+		title: "Mobile Friendly",
+		description:
+			"Access your designs on the go from any device.",
+		bgClass: "bg-slate-500",
+	},
+	{
+		src: "/images/user_friendly.jpg",
+		title: "User-Friendly",
+		description:
+			"Easily craft your e-invite even if you‘re not tech-savvy. It’s that simple.",
+		bgClass: "bg-slate-500",
+	},
+	{
+		src: "/images/up_to_date.jpg",
+		title: "Always up-to-date",
+		description:
+			"We always keep our templates fresh and trendy for all occasions.",
+		bgClass: "bg-slate-500",
+	},
+	{
+		src: "/images/customizable.jpg",
+		title: "Customizable",
+		description:
+			"Make your e-invite truly yours with our easy-to-use editor.",
+		bgClass: "bg-slate-500",
+	},
+	{
+		src: "/images/support.jpg",
+		title: "24/7 support",
+		description:
+			"Our team is here for you around the clock. We value your time.",
+		bgClass: "bg-slate-500",
+	},
+]
 export default function Home() {
 	const { data: session } = useSession();
-	
+
 	const setSesion = useSessionStore((state) => state.setSession);
 	// @ts-ignore
 	session?.user && setSesion(session.expires, session.user);
@@ -77,7 +130,7 @@ export default function Home() {
 					</div>
 				</div>
 			</header>
-			<main className="bg-gradient-to-bl from-[#005f99] to-[#003d5b]">
+			<main className="bg-gradient-to-tr from-[#768fda] to-[#2596be]">
 				<section className="">
 					<div className="p-8">
 						<h1
@@ -87,108 +140,21 @@ export default function Home() {
 						</h1>
 						<div className="flex justify-center ">
 							<div className="w-3/4 lg:flex ">
-								<p
+								<div
 									className={`m-2 text-lg text-[#fbfbff] leading-relaxed ${notoSansKR.className} p-5 rounded-sm`}
 								>
-									Дәстүрлі қағаз шақырулармен қош айтысыңыз. Keliniz.kz арқылы
-									сіздің ерекше шараларыңыз әдемі және стильді электронды
-									шақырулармен әсерлі болмақ!
-								</p>
-								<p
+									<AnimatedText text="Дәстүрлі қағаз шақырулармен қош айтысыңыз. Keliniz.kz арқылы сіздің ерекше шараларыңыз әдемі және стильді электронды шақырулармен әсерлі болмақ!"/>
+								</div>
+								<div
 									className={`m-2 text-lg text-[#fbfbff] leading-relaxed ${notoSansKR.className} p-5 rounded-sm`}
 								>
-									Қазақтың дәстүрлі үйлену тойы ма, әлде заманауи туған күн
-									мерекесі ме — бізбен бірге бәрі де ерекше болады!
-									Қонақтарыңызды қазақы нақыштағы интерактивті шақырулармен
-									қуантаңыз!
-								</p>
+									<AnimatedText text="Қазақтың дәстүрлі үйлену тойы ма, әлде заманауи туған күн мерекесі ме — бізбен бірге бәрі де ерекше болады! Қонақтарыңызды қазақы нақыштағы интерактивті шақырулармен қуантаңыз!" />
+								</div>
 							</div>
 						</div>
-						<div className="text-center flex justify-center items-center m-8 mt-12 lg:text-lg md:text-sm text-white">
+						<div className="fleex justify-center items-center m-8 mt-12 lg:text-lg md:text-sm w-full">
 							{/* <h1>Master the Essentials</h1> */}
-							<Carousel
-								plugins={[plugin.current]}
-								className="w-11/12"
-								onMouseEnter={plugin.current.stop}
-								onMouseLeave={plugin.current.reset}
-							>
-								<CarouselContent className="items-center">
-									{[
-										{
-											src: "/images/fredomtodesign.jpg",
-											title: "Freedom to Design",
-											description:
-												"Get access to thousands of customizable designs at your fingertips.",
-											bgClass:
-												"bg-gradient-to-r from-purple-400 via-pink-500 to-red-500",
-										},
-										{
-											src: "/images/sharing.jpg",
-											title: "Sharing made simple",
-											description:
-												"Effortlessly share your e-invites via email, social media, or any platform of choosing.",
-											bgClass: "bg-slate-500",
-										},
-										{
-											src: "/images/fredomtodesign.jpg",
-											title: "Mobile Friendly",
-											description:
-												"Access your designs on the go from any device.",
-											bgClass: "bg-slate-500",
-										},
-										{
-											src: "/images/user_friendly.jpg",
-											title: "User-Friendly",
-											description:
-												"Easily craft your e-invite even if you‘re not tech-savvy. It’s that simple.",
-											bgClass: "bg-slate-500",
-										},
-										{
-											src: "/images/up_to_date.jpg",
-											title: "Always up-to-date",
-											description:
-												"We always keep our templates fresh and trendy for all occasions.",
-											bgClass: "bg-slate-500",
-										},
-										{
-											src: "/images/customizable.jpg",
-											title: "Customizable",
-											description:
-												"Make your e-invite truly yours with our easy-to-use editor.",
-											bgClass: "bg-slate-500",
-										},
-										{
-											src: "/images/support.jpg",
-											title: "24/7 support",
-											description:
-												"Our team is here for you around the clock. We value your time.",
-											bgClass: "bg-slate-500",
-										},
-									].map((item, index) => (
-										<CarouselItem
-											key={index}
-											className="basis-1/10 md:basis-1/2 lg:basis-[25%]"
-										>
-											<div
-												className={`flex flex-col max-w-96 backdrop-blur-lg bg-[#59C8FF] bg-opacity-25 border border-[#59C8FF] p-4 rounded-sm h-full`}
-											>
-												<div className="max-h-[300px] ">
-													<Image
-														src={item.src}
-														width={400}
-														height={400}
-														alt={item.title}
-													/>
-												</div>
-												<h1 className="my-4">{item.title}</h1>
-												<p>{item.description}</p>
-											</div>
-										</CarouselItem>
-									))}
-								</CarouselContent>
-								<CarouselPrevious className="bg-no" />
-								<CarouselNext className="bg-no" />
-							</Carousel>
+							<HomePageCarusel slides={CarouselItems}/>
 						</div>
 					</div>
 				</section>

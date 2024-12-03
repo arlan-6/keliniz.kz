@@ -24,7 +24,7 @@ export const Navigation: FC<NavigationProps> = ({ className }) => {
 		}
 	}, [session, setSesion]);
 	return (
-		<Headroom className="absolute   overflow-x-hidden">
+		<Headroom className="absolute   overflow-x-hidden w-full">
 			<div className="w-screen text-white">
 				<nav className="md:text-sm lg:text-xl text-xs min-h-12 z-50 motion-preset-fade bg-slate-900 bg-opacity-25 backdrop-blur-lg p-4 shadow-sm">
 					<ul className="flex justify-around items-center">

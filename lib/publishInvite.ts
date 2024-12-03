@@ -25,6 +25,7 @@ export const usePublishInvite = (): PublishInviteReturnType => {
         templateId,
         inviteDetails,
         inviteName,
+        rsvp:[]
       };
 
       const publish = await fetch(url, {

@@ -58,6 +58,8 @@ html body[data-scroll-locked] {
   border: 2px solid #E2E8F0;
 }
 
+
+
 @layer base {
   :root {
     --background: 0 0% 100%;

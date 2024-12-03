@@ -8,6 +8,8 @@ import {
 	SidebarMenu,
 	SidebarMenuButton,
 	SidebarMenuItem,
+	SidebarMenuSub,
+	SidebarMenuSubItem,
 } from "@/components/ui/sidebar";
 import { useInviteEditStore } from "@/app/store/store";
 import { Input } from "../ui/input";
@@ -20,8 +22,13 @@ import { SelectPlace } from "./SelectPlace";
 import { use, useEffect, useState } from "react";
 import { InputNumber } from "../ui/inputNumber";
 import { set } from "date-fns";
-import { Ban, Save, SpellCheck } from "lucide-react";
+import { Ban, ChevronDown, Save, SpellCheck } from "lucide-react";
 import { Toaster } from "../ui/sonner";
+import {
+	Collapsible,
+	CollapsibleContent,
+	CollapsibleTrigger,
+} from "../ui/collapsible";
 export function AppSidebar() {
 	const [isInviteNameChanged, setIsInviteNameChanged] = useState(false);
 	const inviteDetails = useInviteEditStore((s) => s.inviteDetails);
@@ -49,101 +56,140 @@ export function AppSidebar() {
   dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500"
 			>
 				<SidebarGroup className=" p-8">
-					<SidebarGroupContent className="border-b-2 pb-3 ">
-						<SidebarGroupLabel>
-							Invite Name:
-							{/* <Input
+					<SidebarGroupLabel>
+						Invite Name:
+						{/* <Input
 							onChange={(e) => {
 								setInvitename(e.target.value);
 								setChanged(true);
 							}}
 							value={inviteName}
 						/> */}
-							<InputNumber
-								className="text-2xl text-black"
-								type="string"
-								onChange={(e) => {
-									if (e.target.value === inviteName) {
+						<InputNumber
+							className="text-2xl text-black"
+							type="string"
+							onChange={(e) => {
+								if (e.target.value === inviteName) {
+									setIsInviteNameChanged(false);
+								} else {
+									setIsInviteNameChanged(true);
+								}
+								setInviteNameValue(e.target.value);
+							}}
+							value={invitenamevalue}
+						/>
+						{isInviteNameChanged && (
+							<div className="flex gap-2 ">
+								<Button
+									onClick={() => {
+										setInvitename(invitenamevalue);
+										setChanged(true);
 										setIsInviteNameChanged(false);
-									} else {
-										setIsInviteNameChanged(true);
-									}
-									setInviteNameValue(e.target.value);
-								}}
-								value={invitenamevalue}
-							/>
-							{isInviteNameChanged && (
-								<div className="flex gap-2 ">
-									<Button
-										onClick={() => {
-											setInvitename(invitenamevalue);
-											setChanged(true);
-											setIsInviteNameChanged(false);
-										}}
-										className="p-1 px-2  bg-green-600 hover:bg-green-700  motion-preset-expand motion-duration-100"
-									>
-										<SpellCheck size={16} />
-									</Button>
-									<Button
-										onClick={() => {
-											setInviteNameValue(inviteName);
-											setIsInviteNameChanged(false);
-										}}
-										className="p-1 px-2  bg-red-600 hover:bg-red-500  motion-preset-expand motion-duration-100"
-									>
-										<Ban size={16} />
-									</Button>
-								</div>
-							)}
-						</SidebarGroupLabel>
-					</SidebarGroupContent>
-					<SidebarGroupContent>
-						<SidebarGroupLabel>Name 1:</SidebarGroupLabel>
-						<Input
-							onChange={(e) => {
-								setName1(e.target.value);
-								setChanged(true);
-							}}
-							value={inviteDetails.name1}
-						/>
-						<SidebarGroupLabel>Name 2:</SidebarGroupLabel>
-						<Input
-							onChange={(e) => {
-								setName2(e.target.value);
-								setChanged(true);
-							}}
-							value={inviteDetails.name2}
-						/>
-						<SidebarGroupLabel>Date:</SidebarGroupLabel>
-						<Calendar
-							weekStartsOn={1}
-							className="text-sm rounded-md border flex justify-center items-center"
-							mode="single"
-							selected={inviteDetails.date}
-							// {/*@ts-ignore */}
-							onSelect={(date) => {
-								date && setDate(date);
-								setChanged(true);
-							}}
-						/>
-						<SidebarGroupLabel>Time:</SidebarGroupLabel>
-						{/* <TimePickerDemo date={inviteDetails.time} setDate={setTime}/> */}
-						<CustomTimePicker
-							onChange={(time) => {
-								setTime(time);
-								setChanged(true);
-							}}
-							value={inviteDetails.time}
-						/>
-						<SidebarGroupLabel>Location:</SidebarGroupLabel>
-						<SelectPlace
-							onSelect={(location) => {
-								setLocation(location);
-								setChanged(true);
-							}}
-							selected={inviteDetails.location}
-						/>
-					</SidebarGroupContent>
+									}}
+									className="p-1 px-2  bg-green-600 hover:bg-green-700  motion-preset-expand motion-duration-100"
+								>
+									<SpellCheck size={16} />
+								</Button>
+								<Button
+									onClick={() => {
+										setInviteNameValue(inviteName);
+										setIsInviteNameChanged(false);
+									}}
+									className="p-1 px-2  bg-red-600 hover:bg-red-500  motion-preset-expand motion-duration-100"
+								>
+									<Ban size={16} />
+								</Button>
+							</div>
+						)}
+					</SidebarGroupLabel><SidebarGroupContent className="border-b-2 pb-3 "></SidebarGroupContent>
+					<SidebarMenu>
+						<Collapsible defaultOpen className="group/collapsible">
+							<SidebarMenuItem>
+								<CollapsibleTrigger asChild>
+									<SidebarMenuButton>Names</SidebarMenuButton>
+								</CollapsibleTrigger>
+								<CollapsibleContent>
+									<SidebarMenuSub>
+										<SidebarGroupLabel>Name 1:</SidebarGroupLabel>
+										<Input
+											onChange={(e) => {
+												setName1(e.target.value);
+												setChanged(true);
+											}}
+											value={inviteDetails.name1}
+										/>
+										<SidebarGroupLabel>Name 2:</SidebarGroupLabel>
+										<Input
+											onChange={(e) => {
+												setName2(e.target.value);
+												setChanged(true);
+											}}
+											value={inviteDetails.name2}
+										/>
+									</SidebarMenuSub>
+								</CollapsibleContent>
+							</SidebarMenuItem>
+						</Collapsible>
+					</SidebarMenu>
+
+					
+					<SidebarMenu>
+						<Collapsible defaultOpen className="group/collapsible">
+							<SidebarMenuItem>
+								<CollapsibleTrigger asChild>
+									<SidebarMenuButton>Date Time</SidebarMenuButton>
+								</CollapsibleTrigger>
+								<CollapsibleContent>
+									<SidebarMenuSub>
+										<SidebarGroupLabel>Date:</SidebarGroupLabel>
+										<Calendar
+											weekStartsOn={1}
+											className="text-sm rounded-md border flex justify-center items-center"
+											mode="single"
+											selected={inviteDetails.date}
+											// {/*@ts-ignore */}
+											onSelect={(date) => {
+												date && setDate(date);
+												setChanged(true);
+											}}
+										/>
+										<SidebarGroupLabel>Time:</SidebarGroupLabel>
+										{/* <TimePickerDemo date={inviteDetails.time} setDate={setTime}/> */}
+										<CustomTimePicker
+											onChange={(time) => {
+												setTime(time);
+												setChanged(true);
+											}}
+											value={inviteDetails.time}
+										/>
+									</SidebarMenuSub>
+								</CollapsibleContent>
+							</SidebarMenuItem>
+						</Collapsible>
+					</SidebarMenu>
+
+					<SidebarMenu>
+						<Collapsible defaultOpen className="group/collapsible">
+							<SidebarMenuItem>
+								<CollapsibleTrigger asChild>
+									<SidebarMenuButton>Place</SidebarMenuButton>
+								</CollapsibleTrigger>
+								<CollapsibleContent>
+									<SidebarMenuSub>
+										<SidebarGroupLabel>Location:</SidebarGroupLabel>
+										<SelectPlace
+											onSelect={(location) => {
+												setLocation(location);
+												setChanged(true);
+											}}
+											selected={inviteDetails.location}
+										/>
+									</SidebarMenuSub>
+								</CollapsibleContent>
+							</SidebarMenuItem>
+						</Collapsible>
+					</SidebarMenu>
+					<SidebarGroupContent></SidebarGroupContent>
 					<Button
 						disabled={!isChanged}
 						onClick={save}

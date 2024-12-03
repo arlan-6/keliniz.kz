@@ -2,7 +2,7 @@
 
 import { format } from "date-fns";
 import { kk } from "date-fns/locale";
-import React, { FC } from "react";
+import React, { FC, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 interface InviteDetails {
@@ -19,6 +19,8 @@ import { useInviteEditStore } from "@/app/store/store";
 import { Timer } from "../shared/Timer";
 import { Calendar } from "../ui/calendar";
 import GoogleMaps from "../shared/Googlemaps";
+import { Rsvp } from "../shared/rsvp";
+import { useParams } from "next/navigation";
 interface TemplateProps {
 	className?: string;
 	inviteDetails: InviteDetails;
@@ -27,7 +29,9 @@ interface TemplateProps {
 // image path ⬇️
 // /images/template/2cce0d3c79ed49ceab2455640ae8c8a2/
 const Template: FC<TemplateProps> = ({ className, inviteDetails }) => {
-	console.log(inviteDetails);
+	const params = useParams();
+	const inviteId = params.invite; 
+	
 	
 	const isCorrectTime = (time: string) => {
 	  const hours = parseInt(time.slice(0, 2), 10);
@@ -125,6 +129,7 @@ const Template: FC<TemplateProps> = ({ className, inviteDetails }) => {
 				<section>inviteDetails</section>
 				{/* <Map /> */}
 				<GoogleMaps location={inviteDetails.location}/>
+				<Rsvp id={inviteId as string}/>
 			</main>
 			<footer>
 				<p>Footer content</p>

@@ -82,6 +82,6 @@ const config: Config = {
     		appearance: ["none"]
     	}
     },
-	plugins: [require("tailwindcss-animate"),require('tailwindcss-motion')],
+	plugins: [require("tailwindcss-animate"),require('tailwindcss-motion'),require('tailwind-scrollbar'),],
 };
 export default config;
