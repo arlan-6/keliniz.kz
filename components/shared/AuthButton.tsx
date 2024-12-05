@@ -1,7 +1,11 @@
+"use client";
+import { signIn } from "next-auth/react";
 
-"use client"
-import { signIn } from "next-auth/react"
- 
-export default function AuthButton() {
-  return <button onClick={() => signIn("google",{ callbackUrl: '/' })}>google</button>
+import GoogleButton from "react-google-button";
+export default function AuthButton({className}:{className?:string}) {
+	return (
+		<div>
+			<GoogleButton className={className} onClick={() => signIn("google", { callbackUrl: "/" })} />{" "}
+		</div>
+	);
 }

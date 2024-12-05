@@ -110,7 +110,7 @@ export default function Home() {
 						<h1
 							className={`lg:text-8xl sm:text-6xl text-4xl font-bold ${elMesiri.className}  motion-preset-slide-right`}
 						>
-							Keliniz.kz
+							Kelińiz.kz
 						</h1>
 						<p
 							className={`lg:text-xl translate-x-2 ${montserrat.className}  motion-preset-slide-right motion-delay-75`}
